@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Book Network</title>
+<meta name="description" content="Free educational books where each page sets a short text beside a map or a 3D model.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a3282b' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1zM12 6v14'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://openbooknetwork.org/">
+<link rel="stylesheet" href="vendor/fonts.css">
+<style>
+/* the sepia theme of kitap, so the network page looks like the books it lists */
+:root{
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --paper:#e6e1d2;--panel:#efebe0;--ink:#2a2823;--ink-2:#5d5950;--rule:#b9b2a0;--accent:#a3282b;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#2a2823;--panel:#23211c;--ink:#e7e1d1;--ink-2:#aaa392;--rule:#4e4a40;--accent:#d9565a}
+}
+*{box-sizing:border-box}
+html{font-size:clamp(15px, 0.4545vw + 8px, 18px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.5}
+.wrap{max-width:60rem;margin:0 auto;padding:3rem 1.25rem 2rem;display:flex;flex-direction:column;gap:2.5rem}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance}
+header{display:grid;gap:.75rem;border-bottom:1px solid var(--rule);padding-bottom:1.5rem}
+header h1{font-size:2.4rem;display:flex;align-items:center;gap:.6rem}
+header h1 svg{width:2.2rem;height:2.2rem;color:var(--accent);flex:none}
+header p{margin:0;max-width:38rem;color:var(--ink-2);font-size:1.1rem}
+
+.books{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:1.25rem}
+.books a{height:100%;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto 1fr auto;
+  grid-template-areas:"icon go" "name name" "desc desc" "domain domain";gap:.5rem;
+  padding:1.4rem;background:var(--panel);border:1px solid var(--rule);border-radius:8px;color:inherit;text-decoration:none;
+  transition:border-color .15s,transform .15s}
+.books a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.books a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.books .icon{grid-area:icon;width:2.5rem;height:2.5rem;color:var(--ink-2);margin-bottom:.5rem}
+.books a:hover .icon{color:var(--accent)}
+.books h2{grid-area:name;font-size:1.5rem}
+.books p{grid-area:desc;margin:0;color:var(--ink-2)}
+.books .domain{grid-area:domain;margin-top:.5rem;font-size:.85rem;letter-spacing:.04em;color:var(--accent)}
+.books .go{grid-area:go;color:var(--ink-2);font-size:1.2rem;line-height:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+footer{border-top:1px solid var(--rule);padding-top:1rem;color:var(--ink-2);font-size:.95rem}
+footer a{color:var(--ink)}
+
+/* a phone lists the books as rows: the icon, the text, the arrow */
+@media (max-width:640px){
+  .wrap{padding-top:1.75rem;gap:1.75rem}
+  header h1{font-size:1.9rem}
+  header h1 svg{width:1.8rem;height:1.8rem}
+  .books{display:block}
+  .books li:last-child a{border-bottom:0} /* the header and footer rules close the list */
+  .books a{grid-template-columns:2.25rem 1fr auto;grid-template-rows:auto;
+    grid-template-areas:"icon name go" "icon desc go" "icon domain go";column-gap:.9rem;row-gap:.2rem;align-items:center;
+    padding:1rem .25rem;background:none;border:0;border-bottom:1px solid var(--rule);border-radius:0}
+  .books a:hover{transform:none}
+  .books .icon{width:2.25rem;height:2.25rem;margin:0;align-self:start}
+  .books h2{font-size:1.25rem}
+  .books p{font-size:.95rem}
+  .books .domain{margin-top:0;font-size:.8rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1zM12 6v14"/>
+      </svg>
+      Open Book Network
+    </h1>
+    <p>Free educational books where each page sets a short text beside a map or a 3D model.</p>
+  </header>
+
+  <main>
+    <ul class="books">
+      <li>
+        <a href="https://openhistorybook.org/" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/>
+          </svg>
+          <h2>Open History Book</h2>
+          <p>Maps of wars, empires and civilizations, including the Punic Wars, the Viking Age, the Maya and the Napoleonic Wars.</p>
+          <span class="domain">openhistorybook.org</span>
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="sr">(opens in a new tab)</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://openbodybook.org/" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="4.5" r="2.2"/><path d="M12 7.5v7M6.5 10l5.5-1.5 5.5 1.5M8.5 21l3.5-6.5 3.5 6.5"/>
+          </svg>
+          <h2>Open Body Book</h2>
+          <p>3D anatomical models of circulation, the nerves, the lymph system, digestion, the skeleton and the muscles.</p>
+          <span class="domain">openbodybook.org</span>
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="sr">(opens in a new tab)</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    All the books are open source on <a href="https://github.com/openbooknetwork" target="_blank" rel="noopener">GitHub</a>, and anyone can contribute.
+  </footer>
+</div>
+</body>
+</html>
